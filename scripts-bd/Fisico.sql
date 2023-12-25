@@ -48,7 +48,7 @@ create table listEvento(
 );
 
 create table Evento(
-	idEvento integer,
+	idEvento integer unique auto_increment,
     idPonente integer,
     idLista integer,
     nombre varchar(30),

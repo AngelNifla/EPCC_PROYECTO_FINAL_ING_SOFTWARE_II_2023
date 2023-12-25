@@ -14,13 +14,16 @@ repo = EventoRepository()
 @evento_blueprint.route('/api/evento/create', methods=['POST']) # Ruta accesible por POST
 @cross_origin()
 def create_evento():
-    content = repo.create(
-        int(request.json['id']), 
-        int(request.json['id_ponente']), 
-        request.json['nombre'], 
-        request.json['detalles'], 
-        request.json['i']
-    )    
+    print("antes")
+    
+    #content = repo.create(
+    #    id_ponente = 2,
+    #    nombre = request.form['evento_nombre'],
+    #    detalles = request.form['evento_detalles'],
+    #    link = request.form['evento_link'],
+    #)
+    content = repo.create(request.json['id_ponente'],request.json['nombre'],request.json['detalles'],request.json['link'])
+    print(content)
     return jsonify(content)
 
 @evento_blueprint.route('/api/evento/get', methods=['POST']) # Ruta accesible por POST

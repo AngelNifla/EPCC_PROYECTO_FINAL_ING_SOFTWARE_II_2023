@@ -51,15 +51,15 @@ class EventoRepository:
         return data
 
     # Crear evento con todos sus parametros
-    def create(self, id, id_ponente, nombre, detalles, link):
+    def create(self, id_ponente, nombre, detalles, link):
+        print("entre a create")
         params = {
-            'id' : id,
             'id_ponente' : id_ponente,
             'nombre' : nombre,
             'detalles' : detalles,
             'link' : link
         }
-        query = "INSERT INTO evento(%(id)s, %(id_ponente)s, %(nombre)s, %(detalles)s, %(link)s)"
+        query = "INSERT INTO evento (idPonente,idLista,nombre,detalles,link) values(%(id_ponente)s,2, %(nombre)s, %(detalles)s, %(link)s)"
         self.mysql_pool.execute(query, params, commit=True)
         data = {'result : 1'}
         return data
