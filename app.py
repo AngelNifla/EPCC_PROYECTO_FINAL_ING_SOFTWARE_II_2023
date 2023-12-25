@@ -8,11 +8,11 @@ from flask import jsonify
 from flask import render_template,url_for
 from flask_cors import CORS, cross_origin # para que no genere errores de CORS al hacer peticiones
 from flaskext.mysql import MySQL
-from backends.blueprints.evento_blueprint import evento_blueprint
-from backends.blueprints.ponente_blueprint import ponente_blueprint
+from backend.blueprints.evento_blueprint import evento_blueprint
+from backend.blueprints.ponente_blueprint import ponente_blueprint
 
-from backends.models.evento import EventoModel
-from backends.models.ponente import PonenteModel
+from backend.models.evento import EventoModel
+from backend.models.ponente import PonenteModel
 
 app = Flask(__name__,template_folder='frontend/templates',static_folder='frontend/static')
 
