@@ -41,15 +41,16 @@ class AsistenteRepository:
 
     # Crear por todos los parametros
     def create(self, id, nombre, apellido, correo):
+        rv = self.mysql_pool.execute("SELECT idAsistente FROM usuario u INNER JOIN asistente a ON u.idUsuario = a.idAsistente WHERE idAsistente = (select max(idAsistente) from asistente)")
         params = {
-            'id' : id,
+            'id' : rv,
             'nombre' : nombre,
             'apellido' : apellido,
             'correo' : correo,
         }
         # Necesario insertar primero en la tabla usuario
         # ya que tiene una llave foranea asociada
-        query = "INSERT INTO usuario(%(id)s, %(nombre)s, %(apellido)s, %(correo)s)"
+        
         query = "insertarAsistente(%(id)s, %(nombre)s, %(apellido)s, %(correo)s)"
         self.mysql_pool.execute(query, params, commit=True)
         data = {'result : 1'}

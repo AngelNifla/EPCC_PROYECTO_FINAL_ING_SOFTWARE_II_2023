@@ -1,13 +1,13 @@
 from urllib import response
 import requests
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from flask_mysql_connector import MySQL
+
 from flask import Flask, session, redirect, g
 from flask import request,flash
 from flask import jsonify
 from flask import render_template,url_for
 from flask_cors import CORS, cross_origin # para que no genere errores de CORS al hacer peticiones
-from flaskext.mysql import MySQL
+
 from backend.blueprints.evento_blueprint import evento_blueprint
 from backend.blueprints.ponente_blueprint import ponente_blueprint
 
@@ -18,17 +18,24 @@ app = Flask(__name__,template_folder='frontend/templates',static_folder='fronten
 
 app.secret_key= "averysecretkey"
 
-mysql = MySQL()
+#mysql = MySQL()
 app.register_blueprint(evento_blueprint)
 app.register_blueprint(ponente_blueprint)
 
 cors = CORS(app)
-mysql = MySQL(app)
-mysql.init_app(app)
+#mysql = MySQL(app)
+#mysql.init_app(app)
 
-@app.route('/', methods=['GET'])
-def Index():
+@app.route('/', methods=['GET','POST'])
+def index():
     response = requests.post("http://127.0.0.1:5000/api/evento/get_all").json()
+    return render_template('index.html', eventos=response)
+
+
+@app.route('/home', methods=['GET','POST'])
+def home():
+    response = requests.post("http://127.0.0.1:5000/api/evento/get_all").json()
+    print("respnjse",response)
     return render_template('home.html', eventos=response)
     
 @app.route('/login')
@@ -50,7 +57,7 @@ def validate_login():
             return "Not found"
         elif password == user['nombre']:
             session['correo'] = user['correo']
-            return  redirect(url_for('Index'))
+            return  redirect(url_for('home'))
 
     return redirect(url_for('error'))
 
@@ -97,5 +104,3 @@ def Profile(id):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-#branch: gabriel
