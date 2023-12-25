@@ -48,6 +48,7 @@ class EventoRepository:
             }
             data.append(content)
             content = {}
+        
         return data
 
     # Crear evento con todos sus parametros

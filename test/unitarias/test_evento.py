@@ -1,6 +1,6 @@
 import unittest
-from ...backend.models.evento import EventoModel
 
+from ...backend.models.evento import EventoModel
 class TestEvento(unittest.TestCase):
     def setUp(self):
         self.evento = EventoModel(2,2,2,"Ejemplo","Este es un ejemplo","link")

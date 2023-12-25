@@ -26,7 +26,8 @@ def get_ponente():
 @ponente_blueprint.route('/api/ponente/get_all', methods=['POST']) # Ruta accesible por POST
 @cross_origin()
 def get_all_ponente():
-    content = repo.get_all() 
+    content = repo.get_all()
+    print(content)
     return jsonify(content)
 
 @ponente_blueprint.route('/api/ponente/create', methods=['POST']) # Ruta accesible por POST
