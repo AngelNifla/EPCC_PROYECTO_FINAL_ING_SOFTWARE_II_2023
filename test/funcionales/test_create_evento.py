@@ -15,7 +15,7 @@ class test_login(unittest.TestCase):
         driver.get("http://127.0.0.1:5000/")
         title : driver.title
         self.assertIn("Sistema de Publicación de Eventos", driver.title)
-        # driver.implicitly_wait(10)
+
         #driver.maximize_window()
         math_calc = driver.find_element(by=By.XPATH, value="//*[@id='navbarResponsive']/ul/li[2]/a")
         math_calc.click()
