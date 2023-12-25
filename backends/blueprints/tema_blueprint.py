@@ -4,8 +4,8 @@ from flask import jsonify
 
 from flask_cors import cross_origin # para que no genere errores de CORS al hacer peticiones
 
-from backend.models.tema import Tema
-from backend.infrastructure.tema_repository import TemaRepository
+from backends.models.tema import Tema
+from backends.infrastructure.tema_repository import TemaRepository
 
 tema_blueprint = Blueprint('tema_blueprint', __name__)
 

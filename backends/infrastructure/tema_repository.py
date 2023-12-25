@@ -1,4 +1,4 @@
-from backend.infrastructure.connection_pool import MySQLPool
+from backends.infrastructure.connection_pool import MySQLPool
 
 class TemaRepository:
     def __init__(self):

@@ -1,4 +1,4 @@
-from backend.infrastructure.connection_pool import MySQLPool
+from backends.infrastructure.connection_pool import MySQLPool
 
 class PonenteRepository:
     def __init__(self):

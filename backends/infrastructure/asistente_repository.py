@@ -1,4 +1,4 @@
-from backend.infrastructure.connection_pool import MySQLPool
+from backends.infrastructure.connection_pool import MySQLPool
 
 # Clase Repositorio para la lectura y manipulacion en la BD
 class AsistenteRepository:

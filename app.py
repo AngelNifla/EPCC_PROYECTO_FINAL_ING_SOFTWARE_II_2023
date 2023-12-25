@@ -1,65 +1,68 @@
 from urllib import response
 import requests
-
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask_mysql_connector import MySQL
 from flask import Flask, session, redirect, g
-from flask import request
+from flask import request,flash
 from flask import jsonify
 from flask import render_template,url_for
 from flask_cors import CORS, cross_origin # para que no genere errores de CORS al hacer peticiones
+from flaskext.mysql import MySQL
+from backends.blueprints.evento_blueprint import evento_blueprint
+from backends.blueprints.ponente_blueprint import ponente_blueprint
 
-from backend.blueprints.evento_blueprint import evento_blueprint
-from backend.blueprints.ponente_blueprint import ponente_blueprint
-
-from backend.models.evento import EventoModel
-from backend.models.ponente import PonenteModel
+from backends.models.evento import EventoModel
+from backends.models.ponente import PonenteModel
 
 app = Flask(__name__,template_folder='frontend/templates',static_folder='frontend/static')
 
 app.secret_key= "averysecretkey"
 
-
+mysql = MySQL()
 app.register_blueprint(evento_blueprint)
 app.register_blueprint(ponente_blueprint)
 
 cors = CORS(app)
-
+mysql = MySQL(app)
+mysql.init_app(app)
 
 @app.route('/', methods=['GET'])
 def Index():
     response = requests.post("http://127.0.0.1:5000/api/evento/get_all").json()
     return render_template('home.html', eventos=response)
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
-@app.route('/login', methods=['GET','POST'])
-def Login():
+@app.route('/validate_login', methods = ['POST'])
+def validate_login():
     if request.method == 'POST':
-        
         correo = request.form['typeEmailX']
         password = request.form['typePasswordX']
-        # curl = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        # curl.execute("SELECT * FROM usuario WHERE =%s",[correo])
-        # user = curl.fetchone()
         users=requests.post("http://127.0.0.1:5000/api/ponente/get_all").json()
-        print(users)
         user={}
-
         for x in users:
             if x['correo']==correo:
                 user=x
                 break
-        
-            
-
-        # curl.close()
         if not user:
             return "Not found"
         elif password == user['nombre']:
             session['correo'] = user['correo']
             return  redirect(url_for('Index'))
-        else:
-            return redirect(url_for('Registro'))
 
-    return render_template('login.html')
+    return redirect(url_for('error'))
+
+@app.route('/error', methods=['GET'])
+def error():
+    return render_template('error.html')
+
+@app.route('/logout')
+def logout():
+    if 'correo' in session:
+        session.pop('correo', None)
+        return render_template('index.html')
 
 @app.route('/registro', methods=['GET'])
 def Registro():
@@ -80,3 +83,5 @@ def Profile(id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+#branch: gabriel

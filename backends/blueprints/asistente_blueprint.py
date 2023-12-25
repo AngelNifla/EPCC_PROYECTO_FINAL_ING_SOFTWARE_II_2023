@@ -4,8 +4,8 @@ from flask import jsonify
 
 from flask_cors import cross_origin # para que no genere errores de CORS al hacer peticiones
 
-from backend.models.asistente import AsistenteModel
-from backend.infrastructure.asistente_repository import AsistenteRepository
+from backends.models.asistente import AsistenteModel
+from backends.infrastructure.asistente_repository import AsistenteRepository
 
 asistente_blueprint = Blueprint('asistente_blueprint', __name__)
 
