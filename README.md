@@ -52,7 +52,7 @@ La pagina web presenta entre sus principales funcionalidades:
 
   
 ## Github
-Cada integrante ha creado su propia rama con su nombre sobre la cual ha trabajado y se ha realizado integracion continua sobre la rama de **desarrollo** en la cual se realizan las diferentes pruebas tanto unitarias, funcionales, de rendimiento, de seguridad y el analisis estatico.
+Se ha realizado integracion continua sobre la rama de **desarrollo** en la cual se realizan las diferentes pruebas tanto unitarias, funcionales, de rendimiento, de seguridad y el analisis estatico.
 
 ![alt text](Images/github_branches.png "Github branches")
 
