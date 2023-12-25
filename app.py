@@ -15,7 +15,7 @@ app = Flask(__name__,template_folder='frontend/templates',static_folder='fronten
 app.secret_key= "averysecretkey"
 
 app.register_blueprint(evento_blueprint)
-app.register_blueprint(ponente_blueprint)
+#app.register_blueprint(ponente_blueprint)
 
 cors = CORS(app)
 
@@ -94,5 +94,3 @@ def profile(id):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
