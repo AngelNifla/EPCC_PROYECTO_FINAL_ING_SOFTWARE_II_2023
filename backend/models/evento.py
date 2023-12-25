@@ -7,10 +7,6 @@ class EventoModel:
         self.detalles = detalles_
         self.link = link_
 
-    def set_id(self, id_):
-        self.id = id_
-    def get_id(self):
-        return self.id
 
     def set_id_ponente(self, id_ponente_):
         self.id_ponente = id_ponente_

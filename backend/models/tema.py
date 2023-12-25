@@ -3,8 +3,6 @@ class Tema:
         self.id = id
         self.nombre = nombre
     
-    def set_id(self, id_):
-        self.id = id_
     def get_id(self):
         return self.id
 

@@ -51,13 +51,15 @@
             </div>
         </header>
         <!-- Main Content-->
-        <div class="container d-flex">
-            <a href="{{ url_for('create_evento') }}" class="button px-2 bg-primary">Crear evento</a>
-            
-        </div>
+        
         <div class="container px-4 px-lg-5">
+            <div class="container d-flex">
+                
+                
+            </div>
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
+                    <a href="{{ url_for('create_evento') }}" class="btn px-2 btn-primary">Crear evento</a>
                     <!-- Post preview-->
                     {% for evento in eventos %}
                     <div class="post-preview">
