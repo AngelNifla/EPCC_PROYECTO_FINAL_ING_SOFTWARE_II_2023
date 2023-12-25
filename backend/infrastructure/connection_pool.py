@@ -3,11 +3,10 @@ import time
 import mysql.connector.pooling
 
 dbconfig = {
-    "host":"us-cdbr-east-06.cleardb.net",
+    "host":"172.17.0.2",
     "port":"3306",
-    "user":"ba4af9cb7efdee",
-    "password":"010d7bb1",
-    "database":"heroku_7ee060115e9b2a7"
+    "user":"mysql-is",
+    "password":"1234",
 }
 
 class MySQLPool(object):
