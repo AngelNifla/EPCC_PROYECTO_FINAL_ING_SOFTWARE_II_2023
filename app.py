@@ -15,7 +15,7 @@ app = Flask(__name__,template_folder='frontend/templates',static_folder='fronten
 app.secret_key= "averysecretkey"
 
 app.register_blueprint(evento_blueprint)
-#app.register_blueprint(ponente_blueprint)
+app.register_blueprint(ponente_blueprint)
 
 cors = CORS(app)
 
@@ -63,8 +63,18 @@ def logout():
         session.pop('correo', None)
         return render_template('index.html')
 
-@app.route('/registro', methods=['GET'])
+@app.route('/registro', methods=['GET','POST'])
 def registro():
+    if request.method == 'POST':
+        nombres = request.form['nombre']
+        apellidos = request.form['apellidos']
+        email = request.form['email']
+        query= {'id_ponente' : 2,
+        'nombres' : nombres,
+        'apellidos' : apellidos,
+        'email' : email}
+        requests.post("http://127.0.0.1:5000/api/asistente/create",json=query)
+        return render_template('home.html')
     return render_template('registrar.html')
 
 @app.route('/evento/<int:id>', methods=['GET'])
@@ -77,7 +87,8 @@ def evento(id):
 @app.route('/create_evento', methods=['GET','POST'])
 def create_evento():
     if request.method == 'POST':
-        query= {'id_ponente' : 2,
+        query= {
+        'id_ponente' : 2,
         'nombre' : request.form['evento_nombre'],
         'detalles' : request.form['evento_detalles'],
         'link' : request.form['evento_link']}
@@ -91,6 +102,28 @@ def profile(id):
     query = {"id" : id}
     resp = requests.post("http://127.0.0.1:5000/api/ponente/get", json=query).json()
     return render_template('profile.html', ponente=resp)
+
+@app.route('/edit_evento/<int:id>', methods=['GET','POST'])
+def edit_evento(id):
+    if request.method == 'POST':
+        query= {
+        'id' : id,
+        'id_ponente' : 2,
+        'nombre' : request.form['evento_nombre'],
+        'detalles' : request.form['evento_detalles'],
+        'link' : request.form['evento_link']}
+        requests.post("http://127.0.0.1:5000/api/evento/edit",json=query)
+        return  redirect('/home')
+
+    return render_template('edit_evento.html')
+
+
+@app.route('/delete_evento/<int:id>', methods=['GET','POST'])
+def delete_evento(id):
+    print(id)
+    query = {"id" : id}
+    requests.post("http://127.0.0.1:5000/api/evento/delete", json=query)
+    return redirect('/home')
 
 if __name__ == "__main__":
     app.run(debug=True)

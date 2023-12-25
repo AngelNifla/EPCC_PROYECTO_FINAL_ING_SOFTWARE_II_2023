@@ -1,7 +1,7 @@
 import unittest
 from ...backend.models.tema import Tema
 
-class TestEvento(unittest.TestCase):
+class TestTema(unittest.TestCase):
     def setUp(self):
         self.tema = Tema(2,"Grafos")
 

@@ -39,16 +39,16 @@ class PonenteRepository:
             content = {}
         return data
 
-    def create(self, id, nombre, apellido, correo, numEventos, descripcion):
+    def create(self, id, nombre, apellido, correo, num_eventos, descripcion):
         params = {
             'id' : id,
             'nombre' : nombre,
             'apellido' : apellido,
             'correo' : correo,
-            'numEventos' : numEventos,
+            'num_eventos' : num_eventos,
             'descripcion' : descripcion
         }
-        query = "insertarPonente(%(id)s, %(nombre)s, %(apellido)s, %(correo)s, %(numEventos)s, %(descripcion)s)"
+        query = "insertarPonente(%(id)s, %(nombre)s, %(apellido)s, %(correo)s, %(num_eventos)s, %(descripcion)s)"
         self.mysql_pool.execute(query, params, commit=True)
         data = {'result : 1'}
         return data

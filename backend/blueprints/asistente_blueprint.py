@@ -14,6 +14,7 @@ repo = AsistenteRepository()
 @asistente_blueprint.route('/api/asistente/create', methods=['POST']) # Verificar si se encuentra en la base de datos
 @cross_origin()
 def create_asistente():
+    print("en blueprint ",type(request))
     content = repo.create(int(request.json['id']), request.json['nombre'], request.json['apellido'], request.json['correo'])    
     return jsonify(content)
 
@@ -23,13 +24,13 @@ def get_asistente():
     content = repo.get(int(request.json['id']))    
     return jsonify(content)
 
-@asistente_blueprint.route('/api/asistente/create', methods=['POST']) # Verificar si se encuentra en la base de datos
+@asistente_blueprint.route('/api/asistente/get_all', methods=['POST']) # Verificar si se encuentra en la base de datos
 @cross_origin()
 def get_all_asistente():
     content = repo.get_all() 
     return jsonify(content)
 
-@asistente_blueprint.route('/api/asistente/create', methods=['POST']) # Verificar si se encuentra en la base de datos
+@asistente_blueprint.route('/api/asistente/delete', methods=['POST']) # Verificar si se encuentra en la base de datos
 @cross_origin()
 def delete_asistente():
     content = repo.delete(int(request.json['id']))    

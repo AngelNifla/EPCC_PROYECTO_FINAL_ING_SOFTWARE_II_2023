@@ -10,6 +10,7 @@ class AsistenteRepository:
     def get(self, id):
         params = {'id':id}
         rv = self.mysql_pool.execute("SELECT * FROM usuario WHERE idUsuario = %(id)s", params)                
+        
         data = []
         content = {}
         for result in rv:
@@ -26,7 +27,9 @@ class AsistenteRepository:
     # Obtener todos los asistentes
     def get_all(self):
         rv = self.mysql_pool.execute("SELECT * FROM usuario u INNER JOIN asistente a ON u.idUsuario = a.idAsistente ORDER BY idUsuario")
+        
         data = []
+
         content = {}
         for result in rv:
             content = {
@@ -40,10 +43,11 @@ class AsistenteRepository:
         return data
 
     # Crear por todos los parametros
-    def create(self, id, nombre, apellido, correo):
+    def create(self,  nombre, apellido, correo):
         rv = self.mysql_pool.execute("SELECT idAsistente FROM usuario u INNER JOIN asistente a ON u.idUsuario = a.idAsistente WHERE idAsistente = (select max(idAsistente) from asistente)")
+        
         params = {
-            'id' : rv,
+            'id' : rv[0][0]+1,
             'nombre' : nombre,
             'apellido' : apellido,
             'correo' : correo,
@@ -51,8 +55,9 @@ class AsistenteRepository:
         # Necesario insertar primero en la tabla usuario
         # ya que tiene una llave foranea asociada
         
-        query = "insertarAsistente(%(id)s, %(nombre)s, %(apellido)s, %(correo)s)"
+        query = "call insertarAsistente(%(id)s, %(nombre)s, %(apellido)s, %(correo)s);"
         self.mysql_pool.execute(query, params, commit=True)
+        
         data = {'result : 1'}
         return data
 
@@ -63,6 +68,6 @@ class AsistenteRepository:
         # ya que tiene una llave foranea asociada
         query = "DELETE FROM asistente WHERE id = %(id)s\nDELETE FROM usuario WHERE id = %(id)s"    
         self.mysql_pool.execute(query, params, commit=True)   
+        
         data = {'result': 1}
         return data
-

@@ -1,8 +1,7 @@
 /.vscode
-backend/blueprints/__pycache__/evento_blueprint.cpython-310.pyc
-backend/blueprints/__pycache__/ponente_blueprint.cpython-310.pyc
-backend/infrastructure/__pycache__/connection_pool.cpython-310.pyc
-backend/infrastructure/__pycache__/evento_repository.cpython-310.pyc
-backend/models/__pycache__/evento.cpython-310.pyc
-backend/models/__pycache__/ponente.cpython-310.pyc
-backend/models/__pycache__/usuario.cpython-310.pyc
+backend/blueprints/__pycache__/
+backend/infrastructure/__pycache__/
+backend/models/__pycache__/
+.scannerwork/
+
+backend/infrastructure/config.py

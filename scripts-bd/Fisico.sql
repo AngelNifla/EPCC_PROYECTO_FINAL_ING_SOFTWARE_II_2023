@@ -196,4 +196,3 @@ call asiste(6,3);
 select * from asistente;
 select * from ponente;
 select * from usuario;
-

@@ -1,7 +1,8 @@
 import unittest
 from ...backend.models.usuario import UsuarioModel
 
-class TestEvento(unittest.TestCase):
+
+class TestUsuario(unittest.TestCase):
     def setUp(self):
         self.usuario = UsuarioModel(2,"Nombre","Apellido","Correo")
 

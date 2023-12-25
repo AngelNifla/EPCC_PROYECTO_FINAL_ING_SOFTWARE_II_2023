@@ -40,3 +40,13 @@ def delete_evento():
         int(request.json['id'])
     )    
     return jsonify(content)
+
+@evento_blueprint.route('/api/evento/edit', methods=['POST']) # Ruta accesible por POST
+@cross_origin()
+def edit_evento():
+    print("antes")
+
+    content = repo.edit(request.json['id'],request.json['id_ponente'],request.json['nombre'],request.json['detalles'],request.json['link'])
+    print(content)
+    return jsonify(content)
+

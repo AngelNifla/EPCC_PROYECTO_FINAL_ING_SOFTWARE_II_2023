@@ -33,7 +33,7 @@ class EventoRepository:
 
     # Obtener todos los eventos
     def get_all(self):
-        rv = self.mysql_pool.execute("SELECT * FROM Evento ORDER BY idEvento")
+        rv = self.mysql_pool.execute("SELECT * FROM evento ORDER BY idEvento")
         data = []
         content = {}
         for result in rv:
@@ -68,7 +68,24 @@ class EventoRepository:
     # Borrar un evento por id
     def delete(self, id):
         params = {'id' : id}      
-        query = "DELETE FROM evento WHERE id = %(id)s"    
+        query = "DELETE FROM evento WHERE idEvento = %(id)s"    
         self.mysql_pool.execute(query, params, commit=True)   
         data = {'result': 1}
+        return data
+
+#branch diego
+
+    # Crear evento con todos sus parametros
+    def edit(self, id, id_ponente, nombre, detalles, link):
+        print("editando")
+        params = {
+            'id' : id,
+            'id_ponente' : id_ponente,
+            'nombre' : nombre,
+            'detalles' : detalles,
+            'link' : link
+        }
+        query = "UPDATE evento SET idPonente=%(id_ponente)s, idLista=2, nombre=%(nombre)s, detalles=%(detalles)s, link=%(link)s WHERE idEvento=%(id)s"
+        self.mysql_pool.execute(query, params, commit=True)
+        data = {'result : 1'}
         return data

@@ -1,8 +1,8 @@
 
 import unittest
-from ...test.unitarias.test_evento import TestEvento
-from ...test.unitarias.test_usuario import TestUsuario
-from ...test.unitarias.test_tema import TestTema
+from test_evento import TestEvento
+from test_usuario import TestUsuario
+from test_tema import TestTema
 
 
 
