@@ -156,11 +156,6 @@ Al finalizar generar un HTTP report del proyecto en JMeter, el cual nos dara un 
 ![Config](Images/report2.png)
 
 
-## Gestion de issues  
-La gestion de Issues se ha realizado directamente en Github. 
-
-![alt text](Images/issues.png "Issues")
-
 ## Conceptos DDD Aplicados
 Domain Driven Design (DDD) es una práctica de desarrollo de software que pone el acento en el Dominio del Negocio como faro del proyecto y en su Modelo como herramienta de comunicación entre negocio y tecnología. 
 
