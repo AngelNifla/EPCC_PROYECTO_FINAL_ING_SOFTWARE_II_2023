@@ -77,7 +77,7 @@ En Python el tema de construcción automática no necesita de comandos específi
 ## Previsualización del análisis de Sonar Scanner
 ![](https://live.staticflickr.com/65535/52594267137_3f144b21a3_c.jpg)
 ## Vulnerabilidades
-![](Images/Capturas_Sonar_Qube/Security_Vulnerabilities.png){width=500px}
+![](Images/Capturas_Sonar_Qube/Security_Vulnerabilities.png){width=250px}
 ## Code Smells
 ![](https://live.staticflickr.com/65535/52595175725_83504e4f74_c.jpg)
 ## Bugs
